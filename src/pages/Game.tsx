@@ -67,7 +67,79 @@ export default function Game() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-background">
+    <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-background relative overflow-hidden">
+      {/* Фоновые декоративные элементы */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Плавающие игровые стикеры */}
+        <div 
+          className="absolute top-10 left-10 w-20 h-20 opacity-10 animate-bounce"
+          style={{
+            backgroundImage: `url('/img/f925985f-99aa-4118-9960-3704da5b0233.jpg')`,
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat',
+            animationDelay: '0s',
+            animationDuration: '3s'
+          }}
+        />
+        <div 
+          className="absolute top-32 right-20 w-16 h-16 opacity-15 animate-pulse"
+          style={{
+            backgroundImage: `url('/img/df810205-c5ba-46b0-9750-dfaf4103cc54.jpg')`,
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat',
+            animationDelay: '1s'
+          }}
+        />
+        <div 
+          className="absolute bottom-20 left-20 w-24 h-24 opacity-8 animate-bounce"
+          style={{
+            backgroundImage: `url('/img/f925985f-99aa-4118-9960-3704da5b0233.jpg')`,
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat',
+            animationDelay: '2s',
+            animationDuration: '4s'
+          }}
+        />
+        <div 
+          className="absolute top-1/2 left-5 w-18 h-18 opacity-12 animate-pulse"
+          style={{
+            backgroundImage: `url('/img/df810205-c5ba-46b0-9750-dfaf4103cc54.jpg')`,
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat',
+            animationDelay: '0.5s'
+          }}
+        />
+        <div 
+          className="absolute bottom-32 right-16 w-22 h-22 opacity-10 animate-bounce"
+          style={{
+            backgroundImage: `url('/img/f925985f-99aa-4118-9960-3704da5b0233.jpg')`,
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat',
+            animationDelay: '3s',
+            animationDuration: '5s'
+          }}
+        />
+        
+        {/* Абстрактные геометрические формы */}
+        <div 
+          className="absolute top-1/4 right-1/4 w-32 h-32 opacity-5 animate-spin"
+          style={{
+            backgroundImage: `url('/img/a5e437ab-4514-469b-b47b-001fb4b064e5.jpg')`,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            animationDuration: '20s'
+          }}
+        />
+        <div 
+          className="absolute bottom-1/3 left-1/3 w-28 h-28 opacity-6 animate-pulse"
+          style={{
+            backgroundImage: `url('/img/a5e437ab-4514-469b-b47b-001fb4b064e5.jpg')`,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            animationDelay: '2s'
+          }}
+        />
+      </div>
       {/* Игровая навигация */}
       <nav className="border-b bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60 sticky top-0 z-50">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
@@ -99,7 +171,7 @@ export default function Game() {
         </div>
       </nav>
 
-      <div className="container mx-auto px-4 py-6">
+      <div className="container mx-auto px-4 py-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* Информация об игроках */}
           <div className="lg:col-span-1 space-y-4">
