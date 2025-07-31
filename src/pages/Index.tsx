@@ -266,7 +266,7 @@ export default function Index() {
             Сотни настольных игр онлайн. Играйте с друзьями или находите новых соперников со всего мира
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="text-lg px-8">
+            <Button size="lg" className="text-lg px-8" onClick={() => window.location.href = '/game'}>
               <Icon name="Play" className="w-5 h-5 mr-2" />
               Начать играть
             </Button>
@@ -361,7 +361,7 @@ export default function Index() {
                   </CardHeader>
                   <CardContent>
                     <div className="flex gap-2">
-                      <Button className="flex-1">
+                      <Button className="flex-1" onClick={() => window.location.href = '/game'}>
                         <Icon name="Play" className="w-4 h-4 mr-2" />
                         Играть
                       </Button>
@@ -426,7 +426,7 @@ export default function Index() {
                     </div>
                     <Progress value={89} className="h-2" />
                   </div>
-                  <Button className="w-full">
+                  <Button className="w-full" onClick={() => window.location.href = '/game'}>
                     <Icon name="Play" className="w-4 h-4 mr-2" />
                     Играть сейчас
                   </Button>
