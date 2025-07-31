@@ -4,7 +4,12 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Progress } from "@/components/ui/progress";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
 import Icon from "@/components/ui/icon";
+import { useState } from "react";
 
 const gamesList = [
   {
@@ -71,6 +76,9 @@ const achievements = [
 ];
 
 export default function Index() {
+  const [loginOpen, setLoginOpen] = useState(false);
+  const [registerOpen, setRegisterOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-background">
       {/* Навигация */}
@@ -92,13 +100,158 @@ export default function Index() {
           </div>
 
           <div className="flex items-center space-x-3">
-            <Button variant="outline" size="sm">
-              <Icon name="LogIn" className="w-4 h-4 mr-2" />
-              Войти
-            </Button>
-            <Button size="sm">
-              Играть
-            </Button>
+            <Dialog open={loginOpen} onOpenChange={setLoginOpen}>
+              <DialogTrigger asChild>
+                <Button variant="outline" size="sm">
+                  <Icon name="LogIn" className="w-4 h-4 mr-2" />
+                  Войти
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-md">
+                <DialogHeader>
+                  <DialogTitle className="text-center text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                    Добро пожаловать в GameSpace
+                  </DialogTitle>
+                  <DialogDescription className="text-center">
+                    Войдите в свой аккаунт, чтобы продолжить игру
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="space-y-4 py-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Email</Label>
+                    <Input id="email" type="email" placeholder="your@email.com" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="password">Пароль</Label>
+                    <Input id="password" type="password" placeholder="••••••••" />
+                  </div>
+                  <Button className="w-full" size="lg">
+                    <Icon name="LogIn" className="w-4 h-4 mr-2" />
+                    Войти
+                  </Button>
+                  
+                  <div className="relative">
+                    <Separator />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="bg-background px-2 text-muted-foreground text-sm">или</span>
+                    </div>
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-3">
+                    <Button variant="outline" className="w-full">
+                      <Icon name="Github" className="w-4 h-4 mr-2" />
+                      GitHub
+                    </Button>
+                    <Button variant="outline" className="w-full">
+                      <Icon name="Mail" className="w-4 h-4 mr-2" />
+                      Google
+                    </Button>
+                  </div>
+                  
+                  <div className="text-center text-sm">
+                    <span className="text-muted-foreground">Нет аккаунта? </span>
+                    <button 
+                      onClick={() => {
+                        setLoginOpen(false);
+                        setRegisterOpen(true);
+                      }}
+                      className="text-primary hover:underline font-medium"
+                    >
+                      Зарегистрироваться
+                    </button>
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>
+            
+            <Dialog open={registerOpen} onOpenChange={setRegisterOpen}>
+              <DialogTrigger asChild>
+                <Button size="sm">
+                  Играть
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-md">
+                <DialogHeader>
+                  <DialogTitle className="text-center text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                    Присоединяйтесь к GameSpace
+                  </DialogTitle>
+                  <DialogDescription className="text-center">
+                    Создайте аккаунт и начните играть прямо сейчас
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="space-y-4 py-4">
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="space-y-2">
+                      <Label htmlFor="firstName">Имя</Label>
+                      <Input id="firstName" placeholder="Иван" />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="lastName">Фамилия</Label>
+                      <Input id="lastName" placeholder="Иванов" />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="registerEmail">Email</Label>
+                    <Input id="registerEmail" type="email" placeholder="your@email.com" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="username">Никнейм игрока</Label>
+                    <Input id="username" placeholder="ProGamer2024" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="registerPassword">Пароль</Label>
+                    <Input id="registerPassword" type="password" placeholder="••••••••" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="confirmPassword">Подтвердите пароль</Label>
+                    <Input id="confirmPassword" type="password" placeholder="••••••••" />
+                  </div>
+                  
+                  <Button className="w-full" size="lg">
+                    <Icon name="UserPlus" className="w-4 h-4 mr-2" />
+                    Создать аккаунт
+                  </Button>
+                  
+                  <div className="relative">
+                    <Separator />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="bg-background px-2 text-muted-foreground text-sm">или</span>
+                    </div>
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-3">
+                    <Button variant="outline" className="w-full">
+                      <Icon name="Github" className="w-4 h-4 mr-2" />
+                      GitHub
+                    </Button>
+                    <Button variant="outline" className="w-full">
+                      <Icon name="Mail" className="w-4 h-4 mr-2" />
+                      Google
+                    </Button>
+                  </div>
+                  
+                  <div className="text-center text-sm">
+                    <span className="text-muted-foreground">Уже есть аккаунт? </span>
+                    <button 
+                      onClick={() => {
+                        setRegisterOpen(false);
+                        setLoginOpen(true);
+                      }}
+                      className="text-primary hover:underline font-medium"
+                    >
+                      Войти
+                    </button>
+                  </div>
+                  
+                  <div className="text-xs text-muted-foreground text-center">
+                    Регистрируясь, вы соглашаетесь с{" "}
+                    <a href="#" className="text-primary hover:underline">условиями использования</a>
+                    {" "}и{" "}
+                    <a href="#" className="text-primary hover:underline">политикой конфиденциальности</a>
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
       </nav>
